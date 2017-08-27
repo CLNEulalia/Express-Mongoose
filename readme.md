@@ -137,7 +137,7 @@ In order for us to use Mongoose to communicate with our database, we need to lin
 
 <br/>
 
-![Connect to Mongoose](http://i.imgur.com/g1LnWzx.png)
+![Connect to Mongoose](https://i.imgur.com/g1LnWzx.png)
 
 > **`var mongoose = require("mongoose")`** - In order to reference Mongoose, we need to require its corresponding node module and save it in a variable we can reference later.  
 >  
@@ -198,11 +198,11 @@ We can test this by...
 
 <br/>
 
-![Add Seed Data to DB 1](http://i.imgur.com/zWHSpRO.png)
+![Add Seed Data to DB 1](https://i.imgur.com/zWHSpRO.png)
 
 > Notice that `connection.js` no longer contains any reference to seed data. It now only serves as a connection between our application and database.  
 
-![Add Seed Data to DB 2](http://i.imgur.com/qzFr8AI.png)
+![Add Seed Data to DB 2](https://i.imgur.com/qzFr8AI.png)
 
 > **`var mongoose = require("./connection")`** - Note that this time `var mongoose` is not set to `require("mongoose")`. Instead, it represents a connection to our database.  
 >  
@@ -262,7 +262,7 @@ Now let's move down to our index route...
 
 <br/>
 
-![Index](http://i.imgur.com/QBz4ikv.png)
+![Index](https://i.imgur.com/QBz4ikv.png)
 
 > **`Candidate.find({})`** - Retrieves all candidates in the database since we are not passing in any parameters to the method.  
 >  
@@ -297,7 +297,7 @@ Let's make changes to our existing show route...
 <details>
   <summary><strong>Click to reveal...</strong></summary>
 
-  ![Show](http://i.imgur.com/OCIL9H5.png)
+  ![Show](https://i.imgur.com/OCIL9H5.png)
 
 </details>
 
@@ -307,7 +307,7 @@ In NodeJS, in order to process user input received through a form we will need t
 
 Install it via the command line -- `npm install --save body-parser` -- then make the following changes to your `index.js` file...  
 
-![Install body-parser](http://i.imgur.com/ZWSc01J.png)
+![Install body-parser](https://i.imgur.com/ZWSc01J.png)
 
 > **`var parser = require("body-parser")`** - Require `body-parser` so we can reference it later.  
 >  
@@ -387,7 +387,7 @@ Create a form in the index view.
 <details>
   <summary><strong>Click to reveal...</strong></summary>
 
-  ![New non-functional 1](http://i.imgur.com/JqhY57R.png)
+  ![New non-functional 1](https://i.imgur.com/JqhY57R.png)
 
 </details>
 
@@ -433,7 +433,7 @@ Before we actually create a new candidate in the database, let's make sure we ca
 <details>
   <summary><strong>Click to reveal...</strong></summary>
 
-  ![New non-functional 2](http://i.imgur.com/iyxCyZC.png)
+  ![New non-functional 2](https://i.imgur.com/iyxCyZC.png)
 
   > **`res.json(req.body)`** - The server will respond with JSON that contains the user input, which is stored in `req.body`. This should look just like the output of Rails APIs you have created in this course.
 
@@ -460,7 +460,7 @@ Let's modify this post route so that it creates a candidate in our database.
 
 <br/>
 
-![Create in DB](http://i.imgur.com/hqKzbWa.png)
+![Create in DB](https://i.imgur.com/hqKzbWa.png)
 
 > **`Candidate.create(req.body.candidate)`** - Pass in the name stored in `req.body` as an argument to `.create`.  
 >  
@@ -494,7 +494,7 @@ Create an edit form in the show view.
 <details>
   <summary><strong>Click to reveal...</strong></summary>
 
-  ![Edit](http://i.imgur.com/74vYqMa.png)
+  ![Edit](https://i.imgur.com/74vYqMa.png)
 
   > **`method="post"`** - Wait, why is this a `POST` method? Aren't we supposed to send a `PUT` or `PATCH` request?  
 
@@ -521,7 +521,7 @@ Create an edit form in the show view.
 <details>
   <summary><strong>Click to reveal...</strong></summary>
 
-  ![Update](http://i.imgur.com/rtQGmQi.png)
+  ![Update](https://i.imgur.com/rtQGmQi.png)
 
   > **`.findOneAndUpdate()`** - This method takes three arguments: (1) the new params, (2) the candidate to be updated and (3) `new: true`, which causes the modified candidate to be returned in the callback.
 
@@ -554,7 +554,7 @@ We're almost there! Last bit of CRUD functionality we need to implement is `DELE
 <details>
   <summary><strong>Click to reveal...</strong></summary>
 
-  ![Delete 1](http://i.imgur.com/76mp0U4.png)
+  ![Delete 1](https://i.imgur.com/76mp0U4.png)
 
   > Again, **`method="post"`**. What's up with that?  
 
@@ -570,7 +570,7 @@ We're almost there! Last bit of CRUD functionality we need to implement is `DELE
 <details>
   <summary><strong>Click to reveal...</strong></summary>
 
-![Delete 2](http://i.imgur.com/1qF64Tf.png)
+![Delete 2](https://i.imgur.com/1qF64Tf.png)
 
 </details>
 
