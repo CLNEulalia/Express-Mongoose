@@ -17,10 +17,10 @@ Today we'll be working on a brand new app called "When President." It's a simple
 Let's begin by cloning down the repo...
 
 ```bash
-$ git clone git@github.com:ga-wdi-exercises/whenpresident.git
+$ git clone git@git.generalassemb.ly:ga-wdi-exercises/whenpresident.git
 ```
 
-> The starter and solution code are branches in the [`WhenPresident` repo](https://github.com/ga-wdi-exercises/whenpresident/).
+> The starter and solution code are branches in the [`WhenPresident` repo](https://git.generalassemb.ly/ga-wdi-exercises/whenpresident/).
 
 
 #### Starter Code
@@ -503,7 +503,7 @@ Create an edit form in the show view.
 ### Steps
 
 1. In `index.js`, create a `.post` route in `index.js` that corresponds to our new form.
-2. In it, use a Mongoose method to find and update the candidate in question. (Hint: Refer to the Mongoose [lesson plan](https://github.com/ga-wdi-lessons/mongoose-intro#update-5-min) or  [documentation](http://mongoosejs.com/docs/api.html#query_Query-findOneAndUpdate)).
+2. In it, use a Mongoose method to find and update the candidate in question. (Hint: Refer to the Mongoose [lesson plan](https://git.generalassemb.ly/ga-wdi-lessons/mongoose-intro#update-5-min) or  [documentation](http://mongoosejs.com/docs/api.html#query_Query-findOneAndUpdate)).
 3. `.then`, redirect the user to the updated candidate's show page.
 
 ### Questions
@@ -563,7 +563,7 @@ We're almost there! Last bit of CRUD functionality we need to implement is `DELE
 ### Steps
 
 1. In `index.js`, create a route that corresponds to our delete button.
-2. In it, use Mongoose to find and delete the candidate in question. (Hint: Refer to the Mongoose [lesson plan](https://github.com/ga-wdi-lessons/mongoose-intro#delete-5-min) or [documentation](http://mongoosejs.com/docs/api.html#query_Query-findOneAndRemove)).
+2. In it, use Mongoose to find and delete the candidate in question. (Hint: Refer to the Mongoose [lesson plan](https://git.generalassemb.ly/ga-wdi-lessons/mongoose-intro#delete-5-min) or [documentation](http://mongoosejs.com/docs/api.html#query_Query-findOneAndRemove)).
 
 ### Solution
 
@@ -582,7 +582,7 @@ We're almost there! Last bit of CRUD functionality we need to implement is `DELE
 
 ## Homework
 
-You should now be able to complete the [second part of the YUM homework](https://github.com/ga-wdi-exercises/yum#part-ii-add-express).
+You should now be able to complete the [second part of the YUM homework](https://git.generalassemb.ly/ga-wdi-exercises/yum#part-ii-add-express).
 
 ## Resources
 
