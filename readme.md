@@ -137,7 +137,7 @@ module.exports = Candidate
 >  
 > **`mongoose.model( )`** - We attach our schema to our model by passing in two arguments to this method: (1) the desired name of our model ("Candidate") and (2) the existing schema.  
 >  
-> **`module.exports = Candidate`** - When this file (`schema.js`) is required in other files, it will evaluate to the `Candidate` model defined here through which we will be able to query to `candidates` collection in our Mongo database.
+> **`module.exports = Candidate`** - When this file (`schema.js`) is required in other files, it will evaluate to the `Candidate` model defined here through which we will be able to query the `candidates` collection in our Mongo database.
 
 ## We Do: Seed the Database (10 minutes / 0:55)
 
@@ -169,7 +169,7 @@ Candidate.remove({})
   })
 ```
 
-> **`var Candidate = require('./schema.js')`** - Because we defined our model in `schema.js`, we can reference it like so.  
+> **`var Candidate = require('./schema.js')`** - Because we defined our model in `schema.js` and set its `module.exports` to be equal to the `Candidate` model, we can reference it like so.  
 >  
 > **`Candidate.remove({})`** - This clears out the entire `candidates` collection. We're not passing in any parameters, so Mongoose interprets this command as delete all documents in that collection!  
 >  
@@ -390,10 +390,8 @@ Create a form in the index view.
 
   <h2>Register New Candidate</h2>
   <form action="/candidates" method="post">
-    <label>Name</label>
-    <input type="text" name="candidate[name]">
-    <label>Year</label>
-    <input type="text" name="candidate[year]">
+    <input type="text" name="candidate[name]" placeholder="Name">
+    <input type="text" name="candidate[year]" placeholder="Year">
     <input type="submit" value="Register">
   </form>
   ```
