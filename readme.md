@@ -65,7 +65,7 @@ The model is where we define the data for our feature. This is very closely rela
 If we were building an application for a library, we would have a model for a book, an employee, a member. Each of these would contain the definition of any attributes the entity has. For our eBae application, the model that we would need to define is for an Item that a user is selling - it may have a description, a seller, and a starting bid price.
 
 ### The View
-The view is what the user sees and interacts with (the HTML and CSS that get's rendered in the browser).
+The view is what the user sees and interacts with (the HTML and CSS that gets rendered in the browser).
 
 Each Model can have a couple of different views. In MVC there are some conventions around common views:
   - a list/index view, where we show every instance of a model
