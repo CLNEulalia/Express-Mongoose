@@ -84,6 +84,15 @@ The controller is where we knit our models and views together. It is where our b
 
 In eBae, a user will see a new view that will display a form for them to fill out to post a new item for sale. That form will need to be processed - that's where our controller comes in. The controller will take that data and create a new Item from our Item model and save it to the database. Then, when another user wants to see that item, they'll visit the show view. When they do, the controller will use the model to pull the data for that specific item and render our show view.
 
+## Turn And Talk
+(5 minutes)
+
+Turn to your neighbor(s) and review the following questions:
+1. What is MVC? What does it stand for? What are the different parts of MVC?
+2. For each part of MVC,
+  - what is it's concern?
+  - How does it interact with the other two parts?
+
 ### Request Response Cycle (5 minutes)
 
 As a result, the request-response cycle looks like this for our Express applications...
@@ -289,12 +298,12 @@ Candidate.remove({})
 ### Running the Seed File
 
 1. Run `$ node db/seed.js` in the Terminal.
-1. Then run `$ mongo` in the Terminal and enter the following commands via the Mongo CLI interface...
+2. Then run `$ mongo` in the Terminal and enter the following commands via the Mongo CLI interface...
 
-    ```
-    > use whenpresident
-    > db.candidates.find()
-    ```
+```
+> use whenpresident
+> db.candidates.find()
+```
 
 
 ## Break (10 minutes)
@@ -366,8 +375,6 @@ router.get('/', (req, res) => {
 </details>
 
 <br/>
-
-
 
 ## Lunch
 
