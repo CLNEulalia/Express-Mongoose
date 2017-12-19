@@ -845,7 +845,7 @@ Now, set up a route in the controller to handle this delete request.
 
 ## Homework
 
-You should now be able to complete the [second part of the YUM homework](https://git.generalassemb.ly/ga-wdi-exercises/yum#part-ii-add-express).
+You should now be able to complete [the YUM homework](https://git.generalassemb.ly/ga-wdi-exercises/yum#part-ii-add-express).
 
 ## Resources
 
