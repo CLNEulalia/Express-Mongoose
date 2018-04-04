@@ -443,14 +443,14 @@ app.post('/', (req, res) => {
 
 ## Lunch
 
-## Review (10 min / 0:10)
+## Review (10 min / 0:10 / James)
 
 * What is MVC? What are the 3 parts of MVC and how do they relate to each other?
 * What is CRUD?
 * What is REST? What is RESTful routing? What is a resource?
 * What is a route? What are the HTTP methods (verbs)?
 
-## Updating a To do (20 min / 0:30)
+## Updating a To do (20 min / 0:30 / Ali)
 
 Updating a to do has two steps: first, we need to get the to do that the user wants to update and render a form to update that to do, typically called the `edit` view; second, when the user submits that form, we update that to do in the database. For updating data in REST, we use `PUT` and `PATCH`, here we'll use `PUT`. There's just one small problem: `PUT`, `PATCH`, and `DELETE` are all part of REST and HTTP - they are **not** part of HTML. That means, we can't make the `method` attribute of a form equal and of those three methods.
 
@@ -510,7 +510,7 @@ router.put('/:id', (req, res) => {
 
 The first route above queries the database using `.findOne()` to find a record with the same `_id` as the id passed in via params. We then render that to do to the user. When the user submits the form in the edit view, we use the `findOneAndUpdate()` method to find and update a record in a single operation.
 
-## Delete a To Do (20 min / 0:50)
+## Delete a To Do (20 min / 0:50 / James)
 
 We're almost there! Last bit of CRUD functionality we need to implement is `DELETE`. Let's start by adding a second form with a delete button to our show view:
 
