@@ -43,7 +43,7 @@ If we want to change how we're presenting some data, we can do so by just changi
 
 ## MVC In Action (20 min / 0:35) - James
 
-Lets say we're building a hypothetical application for our client, Beyonce. This application will let her fans buy and sell second-hand merchandise. We'll call it eBae.
+Lets say we're building a hypothetical application for our client, Beyonce. This application will let her fans buy and sell second-hand merchandise. We'll call it eBey.
 
 Specifically, we need to build out the part of the application that will let a user post a new item for sale. To do so, we need to know what data we have about a given item, how to present an item and how we can control the data and it's presentation through some business logic.
 
@@ -53,12 +53,12 @@ These map directly to the three parts of MVC:
 2. View - where we present the data for a feature
 3. Controller - where we compose our data and it's presentation through some business logic
 
-For the feature we need to add to eBae, our Model, View and Controller would break down like this:
+For the feature we need to add to eBey, our Model, View and Controller would break down like this:
 
 ### The Model - Ali
 The model is where we define the data for our feature. This is very closely related to Domain Modelling and ERDs.
 
-If we were building an application for a library, we would have a model for a book, an employee, a member. Each of these would contain the definition of any attributes the entity has. For our eBae application, the model that we would need to define is for an Item that a user is selling - it may have a description, a seller, and a starting bid price.
+If we were building an application for a library, we would have a model for a book, an employee, a member. Each of these would contain the definition of any attributes the entity has. For our eBey application, the model that we would need to define is for an Item that a user is selling - it may have a description, a seller, and a starting bid price.
 
 ### The View - James
 The view is what the user sees and interacts with (the HTML and CSS that gets rendered in the browser).
@@ -69,7 +69,7 @@ Each Model can have a couple of different views. In MVC there are some conventio
   - an edit view, where we can update a single instance of a model
   - a new view, where we can create a new instance of a model
 
-In eBae, we need to build out a couple of views:
+In eBey, we need to build out a couple of views:
   - a view to show every item that is for sale (the list/index view)
   - a view for a single item for sale (the show view)
   - a view for a seller to edit an item they've posted for sale (an edit view)
@@ -78,7 +78,7 @@ In eBae, we need to build out a couple of views:
 ### The Controller - Ali
 The controller is where we knit our models and views together. It is where our business logic will live and we'll compose our views and models together.
 
-In eBae, a user will see a new view that will display a form for them to fill out to post a new item for sale. That form will need to be processed - that's where our controller comes in. The controller will take that data and create a new Item from our Item model and save it to the database. Then, when another user wants to see that item, they'll visit the show view. When they do, the controller will use the model to pull the data for that specific item and render our show view.
+In eBey, a user will see a new view that will display a form for them to fill out to post a new item for sale. That form will need to be processed - that's where our controller comes in. The controller will take that data and create a new Item from our Item model and save it to the database. Then, when another user wants to see that item, they'll visit the show view. When they do, the controller will use the model to pull the data for that specific item and render our show view.
 
 ## Turn And Talk (10 min / 0:45) - James
 
