@@ -8,13 +8,13 @@
 * Introduce CRUD
 * Implement CRUD functionality in an Express app using Mongoose
 
-## Overview (5 min / 0:05) - Ali
+## Overview (5 min / 0:05)
 
 This day-long workshop will get us familiar with the process of building web applications using Express, MongoDB and Mongoose and Handlebars. We'll start with high-level introductions to MVC and CRUD before learning how to connect Express to MongoDB using Mongoose and then building our first fully CRUD, MVC application.
 
 So far in this unit you've learned about a number of tools - Node, Express, MongoDB and Mongoose - that developers can use to build a server-side JavaScript application. You have yet, however, to use them all together. We'll be spending the bulk of today's lesson connecting everything and creating an application that can receive HTTP requests, retrieve data / make changes in a database, and send information back to the end-user.
 
-# Intro to MVC (5 min / 0:10) - James
+# Intro to MVC (5 min / 0:10)
 
 Before we get in to learning how to build full stack web applications, we need to take a step back and introduce an important architectural pattern: MVC.
 
@@ -26,7 +26,7 @@ Just like with buildings, there are common ways of architecting an application. 
 
 The application architecture we're learning today is one of the most common. It's called MVC, which stands for **model**, **view**, **controller**.
 
-## Why MVC? (5 min / 0:15) - Ali
+## Why MVC? (5 min / 0:15)
 
 What makes MVC so powerful as an architectural pattern is the idea of [Separation of Concerns](https://en.wikipedia.org/wiki/Separation_of_concerns).
 
@@ -41,7 +41,7 @@ Each of these can be considered a separate **concern**: presentation, persistenc
 If we want to change how we're presenting some data, we can do so by just changing the presentation and it wont affect the persistence or business logic.
 </details>
 
-## MVC In Action (20 min / 0:35) - James
+## MVC In Action (20 min / 0:35)
 
 Lets say we're building a hypothetical application for our client, Beyonce. This application will let her fans buy and sell second-hand merchandise. We'll call it eBey.
 
@@ -55,12 +55,12 @@ These map directly to the three parts of MVC:
 
 For the feature we need to add to eBey, our Model, View and Controller would break down like this:
 
-### The Model - Ali
+### The Model
 The model is where we define the data for our feature. This is very closely related to Domain Modelling and ERDs.
 
 If we were building an application for a library, we would have a model for a book, an employee, a member. Each of these would contain the definition of any attributes the entity has. For our eBey application, the model that we would need to define is for an Item that a user is selling - it may have a description, a seller, and a starting bid price.
 
-### The View - James
+### The View
 The view is what the user sees and interacts with (the HTML and CSS that gets rendered in the browser).
 
 Each Model can have a couple of different views. In MVC there are some conventions around common views:
@@ -75,13 +75,12 @@ In eBey, we need to build out a couple of views:
   - a view for a seller to edit an item they've posted for sale (an edit view)
   - a few for a seller to post a new item for sale (a new view)
 
-### The Controller - Ali
+### The Controller
 The controller is where we knit our models and views together. It is where our business logic will live and we'll compose our views and models together.
 
 In eBey, a user will see a new view that will display a form for them to fill out to post a new item for sale. That form will need to be processed - that's where our controller comes in. The controller will take that data and create a new Item from our Item model and save it to the database. Then, when another user wants to see that item, they'll visit the show view. When they do, the controller will use the model to pull the data for that specific item and render our show view.
 
-## Turn And Talk (10 min / 0:45) - James
-
+## Turn And Talk (10 min / 0:45)
 Turn to your neighbor(s) and review the following questions:
 
 1. What is MVC? What does it stand for? What are the different parts of MVC?
@@ -93,7 +92,7 @@ Turn to your neighbor(s) and review the following questions:
 
 # Express & MongoDB 
 
-## We Do: [To Do](https://git.generalassemb.ly/ga-wdi-exercises/express-to-do) (5 min / 1:00) - Ali
+## We Do: [To Do](https://git.generalassemb.ly/ga-wdi-exercises/express-to-do) (5 min / 1:00)
 
 Clone down the [Express To Do](https://git.generalassemb.ly/ga-wdi-exercises/express-to-do) repository. This is the application we'll be building together as we learn Express and Mongoose.
 
@@ -109,7 +108,7 @@ The `db` folder will be where we configure our database connection. The `models`
 
 It's important to note that we are by no means required to follow any particular folder structure with Express. That is one of Express' strengths - it's really flexible and we can structure the application however we as developers see best. The folder structure we're following here is convenient, as it closely follows MVC.
 
-## Mongoose (5 min / 1:15) - James
+## Mongoose (5 min / 1:15)
 
 ### Why are we using Mongoose?
 
@@ -153,7 +152,7 @@ module.exports = mongoose
 >
 > **`module.exports = mongoose`** - When this file (`connection.js`) is required in other files, it will evaluate to this *connected* version of `mongoose`.
 
-### Defining a Mongoose Schema and Model - Ali
+### Defining a Mongoose Schema and Model
 
 1. Create a new file in `db` directory called `schema.js`.
 2. At the top of `schema.js`, require the `connection.js` file and save it to a `mongoose` variable.
@@ -182,7 +181,7 @@ module.exports = Todo;
 >  
 > **`module.exports = Todo`** - When this file (`schema.js`) is required in other files, it will evaluate to the `Todo` model defined here through which we will be able to query the `todo` collection in our Mongo database.
 
-## We Do: Seed the Database (10 min / 1:45) - James
+## We Do: Seed the Database (10 min / 1:45)
 
 Mongoose is now connected to our Express application. Let's seed some data into our database using Mongoose.
 
@@ -230,7 +229,7 @@ Todo.remove({})
 > db.todo.find()
 ```
 
-## Aside: CRUD (5 min / 1:50) - Ali
+## Aside: CRUD (5 min / 1:50)
 
 CRUD is an acronym you'll hear a lot: it captures all of the operations we can perform on data in our application. CRUD stands for:
 
@@ -241,7 +240,7 @@ CRUD is an acronym you'll hear a lot: it captures all of the operations we can p
 
 As we're building out the routes for working with our data, we'll be building them to perform full CRUD. That means we'll have routes for creating, reading, updating and deleting data in our application.
 
-## Aside REST(15 min / 2:05) - James
+## Aside REST(15 min / 2:05)
 
 The web as we know it transfers data via HTTP, or Hyper-Text Transfer Protocol. HTTP specifies that a server receives a **request** from a client and then delivers a corresponding **response**.
 
@@ -259,7 +258,7 @@ Knowing REST is important because the vast majority of web developers have agree
 
 We make requests all the time -- especially `GET` requests. Every time you go to your browser, enter a URL, and hit enter, you're actually making a `GET` request.
 
-### RESTful HTTP Methods - Ali
+### RESTful HTTP Methods
 
 REST defines five main methods, each of which corresponds to one of the CRUD functionalities.
 
@@ -277,13 +276,13 @@ So, wait -- there are 5 REST methods, but only 4 CRUD methods?
 
 To clarify further, `PATCH` is replacing part of the data and `PUT` is replacing the whole thing.
 
-### What's the difference at a technical level between a GET and a POST request? - James
+### What's the difference at a technical level between a GET and a POST request?
 
 There is of course the difference in the METHOD type, but also in the request payload. A `POST` request for instance will contain all of the data necessary for creating some new object.
 
 GET is for when you want to read something. The parameters of the GET request are used for identifying which piece of data the client would like to read. The parameters of the POST request are used for defining a new piece of data.
 
-### RESTful Routes - Ali
+### RESTful Routes
 
 A **route** is a **method** plus a **path**...
 
@@ -308,7 +307,7 @@ These routes are important to keep in mind as we build out our controllers. For 
 
 ## Break (10 min / 2:15)
 
-## Index Route (20 min / 2:25) - James
+## Index Route (20 min / 2:25)
 
 First order of business: display all the to dos stored in the database. We'll do this by adding code to the controller that:
 
@@ -350,7 +349,7 @@ The above controller action fetches all Todos from the database and renders them
 
 Now, if we reload the page, we should see a list containing three todos. We'll be coming back to some of these.
 
-## Show Route (20 min / 2:45) - Ali
+## Show Route (20 min / 2:45)
 
 If `/todos` renders a list of todos, then `/todos/1` renders a view showing the to do with an id of 1. Lets build that next:
 
@@ -376,7 +375,7 @@ The above will attempt to render a `show` view, which we do not yet have. Let's 
 
 This view will render the title as well as a link to edit and a form to delete
 
-## Creating a new To Do (45 min / 3:30) - James
+## Creating a new To Do (45 min / 3:30)
 
 We want to be able to add new to do items to our list. Doing so will require submitting a form that will be processed by our server. We first need to render a view with the form, commonly at `/{resource}/new`:
 
@@ -386,7 +385,7 @@ app.get('/new', (req, res) => {
 });
 ```
 
-### Forms & `body-parser` - James
+### Forms & `body-parser`
 
 In Express, in order to process user input received through a form we will need to install and implement the `body-parser` middleware.  
 
@@ -408,7 +407,7 @@ app.use(parser.urlencoded({ extended: true }))
 
 `body-parser` will parse the body of an incoming request, making it available to us as part of the `request` object. The body is the payload of the request: the data for a new item, for instance. Now that `body-parser` is set up, we can write up our view:
 
-### View - Ali
+### View
 
 ```html
 <h2>New To Do:</h2>
@@ -443,14 +442,14 @@ app.post('/', (req, res) => {
 
 ## Lunch
 
-## Review (10 min / 0:10 / James)
+## Review (10 min / 0:10)
 
 * What is MVC? What are the 3 parts of MVC and how do they relate to each other?
 * What is CRUD?
 * What is REST? What is RESTful routing? What is a resource?
 * What is a route? What are the HTTP methods (verbs)?
 
-## Updating a To do (20 min / 0:30 / Ali)
+## Updating a To do (20 min / 0:30)
 
 Updating a to do has two steps: first, we need to get the to do that the user wants to update and render a form to update that to do, typically called the `edit` view; second, when the user submits that form, we update that to do in the database. For updating data in REST, we use `PUT` and `PATCH`, here we'll use `PUT`. There's just one small problem: `PUT`, `PATCH`, and `DELETE` are all part of REST and HTTP - they are **not** part of HTML. That means, we can't make the `method` attribute of a form equal and of those three methods.
 
@@ -510,7 +509,7 @@ router.put('/:id', (req, res) => {
 
 The first route above queries the database using `.findOne()` to find a record with the same `_id` as the id passed in via params. We then render that to do to the user. When the user submits the form in the edit view, we use the `findOneAndUpdate()` method to find and update a record in a single operation.
 
-## Delete a To Do (20 min / 0:50 / James)
+## Delete a To Do (20 min / 0:50)
 
 We're almost there! Last bit of CRUD functionality we need to implement is `DELETE`. Let's start by adding a second form with a delete button to our show view:
 
