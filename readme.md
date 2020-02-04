@@ -1,12 +1,13 @@
 # Express & Mongoose
 
 ## Learning Objectives
-* Understand each part of the MVC architecture
-* Explain the role each part of MVC plays in an application
-* Identify how an Express app fits within the MVC framework
-* Connect an Express app to a MongoDB database
-* Introduce CRUD
-* Implement CRUD functionality in an Express app using Mongoose
+
+- Understand each part of the MVC architecture
+- Explain the role each part of MVC plays in an application
+- Identify how an Express app fits within the MVC framework
+- Connect an Express app to a MongoDB database
+- Introduce CRUD
+- Implement CRUD functionality in an Express app using Mongoose
 
 ## Overview (5 min / 0:05)
 
@@ -20,7 +21,7 @@ Before we get in to learning how to build full stack web applications, we need t
 
 > What might we mean when we say "architectural pattern"?
 
-When building an application, there is an important step that has to happen that is often described as *architecting* the app. This step encompasses things like deciding on a file structure, figuring out what entities your application will have and how they relate to each other, etc. So, we describe it as *architecting*.
+When building an application, there is an important step that has to happen that is often described as _architecting_ the app. This step encompasses things like deciding on a file structure, figuring out what entities your application will have and how they relate to each other, etc. So, we describe it as _architecting_.
 
 Just like with buildings, there are common ways of architecting an application. This goes back to the idea of "Convention over Configuration" that we've talked about previously. Using a common convention for the architecture of our application lets us get started sooner and onboard other developers quickly.
 
@@ -39,6 +40,7 @@ For any given feature of an application, we'll have multiple things we need to d
 Each of these can be considered a separate **concern**: presentation, persistence, business logic. Separating these makes them easier to build, write, maintain or change.
 
 If we want to change how we're presenting some data, we can do so by just changing the presentation and it wont affect the persistence or business logic.
+
 </details>
 
 ## MVC In Action (20 min / 0:35)
@@ -56,37 +58,44 @@ These map directly to the three parts of MVC:
 For the feature we need to add to eBey, our Model, View and Controller would break down like this:
 
 ### The Model
+
 The model is where we define the data for our feature. This is very closely related to Domain Modelling and ERDs.
 
 If we were building an application for a library, we would have a model for a book, an employee, a member. Each of these would contain the definition of any attributes the entity has. For our eBey application, the model that we would need to define is for an Item that a user is selling - it may have a description, a seller, and a starting bid price.
 
 ### The View
+
 The view is what the user sees and interacts with (the HTML and CSS that gets rendered in the browser).
 
 Each Model can have a couple of different views. In MVC there are some conventions around common views:
-  - a list/index view, where we show every instance of a model
-  - a show view, where we see a single instance of a model
-  - an edit view, where we can update a single instance of a model
-  - a new view, where we can create a new instance of a model
+
+- a list/index view, where we show every instance of a model
+- a show view, where we see a single instance of a model
+- an edit view, where we can update a single instance of a model
+- a new view, where we can create a new instance of a model
 
 In eBey, we need to build out a couple of views:
-  - a view to show every item that is for sale (the list/index view)
-  - a view for a single item for sale (the show view)
-  - a view for a seller to edit an item they've posted for sale (an edit view)
-  - a few for a seller to post a new item for sale (a new view)
+
+- a view to show every item that is for sale (the list/index view)
+- a view for a single item for sale (the show view)
+- a view for a seller to edit an item they've posted for sale (an edit view)
+- a few for a seller to post a new item for sale (a new view)
 
 ### The Controller
+
 The controller is where we knit our models and views together. It is where our business logic will live and we'll compose our views and models together.
 
 In eBey, a user will see a new view that will display a form for them to fill out to post a new item for sale. That form will need to be processed - that's where our controller comes in. The controller will take that data and create a new Item from our Item model and save it to the database. Then, when another user wants to see that item, they'll visit the show view. When they do, the controller will use the model to pull the data for that specific item and render our show view.
 
 ## Turn And Talk (10 min / 0:45)
+
 Turn to your neighbor(s) and review the following questions:
 
 1. What is MVC? What does it stand for? What are the different parts of MVC?
 2. For each part of MVC,
-  - what is it's concern?
-  - How does it interact with the other two parts?
+
+- what is it's concern?
+- How does it interact with the other two parts?
 
 ## Break (10 min / 0:55)
 
@@ -116,10 +125,10 @@ In the next few sections, we'll use Mongoose to connect to our MongoDB database 
 
 In order for us to use Mongoose to communicate with our database, we need to link it up to our Express application. We'll do this by...
 
-* Establishing a connection with a Mongo database.
-* Define a Mongoose schema and model.
+- Establishing a connection with a Mongo database.
+- Define a Mongoose schema and model.
 
-A schema is a description of how an object should be structure (a *schematic* for objects we want to use in our application and store in our database). A schema is defined as part of a **Model**: a representation of our data in our application (the **M** in **MVC**).
+A schema is a description of how an object should be structure (a _schematic_ for objects we want to use in our application and store in our database). A schema is defined as part of a **Model**: a representation of our data in our application (the **M** in **MVC**).
 
 ### Set up Connection to MongoDB
 
@@ -133,18 +142,18 @@ A schema is a description of how an object should be structure (a *schematic* fo
 ```js
 // db/connection.js
 
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/todo')
+mongoose.connect('mongodb://localhost/todo');
 
-module.exports = mongoose
+module.exports = mongoose;
 ```
 
 > **`const mongoose = require("mongoose")`** - In order to reference Mongoose, we need to require its corresponding node module and save it in a variable we can reference later.
 >
 > **`mongoose.connect`** - We also need to link Mongoose to our `todo` Mongo database.
 >
-> **`module.exports = mongoose`** - When this file (`connection.js`) is required in other files, it will evaluate to this *connected* version of `mongoose`.
+> **`module.exports = mongoose`** - When this file (`connection.js`) is required in other files, it will evaluate to this _connected_ version of `mongoose`.
 
 ### Defining a Mongoose Schema and Model
 
@@ -157,14 +166,14 @@ module.exports = mongoose
 ```js
 // db/schema.js
 
-const mongoose = require("./connection");
+const mongoose = require('./connection');
 
 const ToDoSchema = new mongoose.Schema({
   title: String,
   complete: Boolean
 });
 
-const Todo = mongoose.model("Todo", ToDoSchema);
+const Todo = mongoose.model('Todo', ToDoSchema);
 
 module.exports = Todo;
 ```
@@ -185,18 +194,18 @@ Seeds allow us to quickly create dummy data. Why would we do that? In order to t
 
 1. Create a new `seeds.js` file in `db`.
 2. In `seeds.js`, require the files containing our model definition and seedData:
-    - Require the `schema.js` file and save it to a variable called `Todo`
-    - Require the `seeds.json` file and save it to a variable called `seedData`
+   - Require the `schema.js` file and save it to a variable called `Todo`
+   - Require the `seeds.json` file and save it to a variable called `seedData`
 3. Write Mongoose queries that accomplish the following...
-    - Clears the database of all data, and `.then`...
-    - Inserts our seed data into the database, and `.then`...
-    - Calls `process.exit()`.
+   - Clears the database of all data, and `.then`...
+   - Inserts our seed data into the database, and `.then`...
+   - Calls `process.exit()`.
 
 > If you need help remembering Mongoose queries, [the official documentation is a good place to look](http://mongoosejs.com/docs/guide.html).
 
 ```js
-const Todo = require("./schema");
-const seedData = require("./seeds.json");
+const Todo = require('./schema');
+const seedData = require('./seeds.json');
 
 Todo.remove({})
   .then(() => {
@@ -220,17 +229,17 @@ Todo.remove({})
 
 ```
 > use todo
-> db.todo.find()
+> db.todos.find()
 ```
 
 ## Aside: CRUD (5 min / 1:50)
 
 CRUD is an acronym you'll hear a lot: it captures all of the operations we can perform on data in our application. CRUD stands for:
 
-* Create - make a new instance of our data
-* Read - view our data
-* Update - edit an existing data instance
-* Delete - remove an existing piece of data
+- Create - make a new instance of our data
+- Read - view our data
+- Update - edit an existing data instance
+- Delete - remove an existing piece of data
 
 As we're building out the routes for working with our data, we'll be building them to perform full CRUD. That means we'll have routes for creating, reading, updating and deleting data in our application.
 
@@ -242,7 +251,7 @@ Remember: a server's job is to respond to HTTP requests. In order to talk about 
 
 Every HTTP request consists of a request **method** and **path**. The **path** is the part of the URL following the domain. We likely have noticed paths when navigating the web. What is the path for this lesson?
 
-Your browser always sends that request in a *particular way* that gives the server a hint as to the purpose of the request. This *particular way* is the **method**.
+Your browser always sends that request in a _particular way_ that gives the server a hint as to the purpose of the request. This _particular way_ is the **method**.
 
 **REST**, or REpresentational State Transfer, is a convention that standardizes how clients make requests to servers.
 
@@ -256,13 +265,13 @@ We make requests all the time -- especially `GET` requests. Every time you go to
 
 REST defines five main methods, each of which corresponds to one of the CRUD functionalities.
 
-| Method | Crud functionality | DB Action |
-| ----- |--------|----------------------   |
-| GET   | read   | retrieve data           |
-| POST  | create | add data                |
-| PUT   | update | modify existing data    |
-| PATCH | update | modify existing data    |
-| DELETE| delete | delete existing data    |
+| Method | Crud functionality | DB Action            |
+| ------ | ------------------ | -------------------- |
+| GET    | read               | retrieve data        |
+| POST   | create             | add data             |
+| PUT    | update             | modify existing data |
+| PATCH  | update             | modify existing data |
+| DELETE | delete             | delete existing data |
 
 So, wait -- there are 5 REST methods, but only 4 CRUD methods?
 
@@ -286,14 +295,14 @@ Each route results in an **action**.
 
 REST can be translated in to RESTful Routes (routes that follow REST):
 
-| Method |      Path     |       Action |
-| ------ | ------------- | ---------------------------------- |
-|   GET  |  `/students`  | Read information about all students |
-|  POST  |  `/students`  | Create a new student |
-|   GET  | `/students/1` | Read information about the student whose ID is 1 |
-|  PUT   | `/students/1` | Update the existing student whose ID is 1 with all new content |
-|  PATCH | `/students/1` | Update the existing student whose ID is 1 with partially new content |
-| DELETE | `/students/1` | Delete the existing student whose ID is 1 |
+| Method | Path          | Action                                                               |
+| ------ | ------------- | -------------------------------------------------------------------- |
+| GET    | `/students`   | Read information about all students                                  |
+| POST   | `/students`   | Create a new student                                                 |
+| GET    | `/students/1` | Read information about the student whose ID is 1                     |
+| PUT    | `/students/1` | Update the existing student whose ID is 1 with all new content       |
+| PATCH  | `/students/1` | Update the existing student whose ID is 1 with partially new content |
+| DELETE | `/students/1` | Delete the existing student whose ID is 1                            |
 
 Note that the path doesn't contain any of the words describing the CRUD functionality that will be executed. That's the method's job.
 
@@ -305,8 +314,8 @@ These routes are important to keep in mind as we build out our controllers. For 
 
 First order of business: display all the to dos stored in the database. We'll do this by adding code to the controller that:
 
-* Retrieves all of the to dos from the database.
-* Renders a view displaying the retrieved to dos.
+- Retrieves all of the to dos from the database.
+- Renders a view displaying the retrieved to dos.
 
 In `controllers/todos.js`, let's add the following controller actions:
 
@@ -316,7 +325,7 @@ router.get('/', (req, res) => {
     .then(todos => {
       res.render('index', { todos });
     })
-    .catch(err => console.log(err))
+    .catch(err => console.log(err));
 });
 ```
 
@@ -334,7 +343,10 @@ The above controller action fetches all Todos from the database and renders them
 
 <ul>
   {{#each todos}}
-    <li><a href="/{{this.id}}">{{this.title}}</a> - <a href="edit/{{this.id}}">Edit</a></li>
+  <li>
+    <a href="/{{this.id}}">{{this.title}}</a> -
+    <a href="edit/{{this.id}}">Edit</a>
+  </li>
   {{/each}}
 </ul>
 
@@ -348,18 +360,17 @@ Now, if we reload the page, we should see a list containing three todos. We'll b
 If `/todos` renders a list of todos, then `/todos/1` renders a view showing the to do with an id of 1. Lets build that next:
 
 ```js
-app.get('/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   Todo.findOne({ _id: req.params.id })
     .then(todo => {
-      res.render('todos/show', todo);
+      res.render('show', todo);
     })
-    .catch(err => console.log(err))
+    .catch(err => console.log(err));
 });
 ```
 
-> **`app.get('/:id', (req, res) => {})`** `:id` is a *parameter*: a placeholder for a value. We can access the value through the `params` object inside of `req`: `req.params.id`
-> **`Todo.findOne({ _id: req.params.id })`** There are two methods you'll see used to query the database, `find()` and `findOne()`. The first will run a query and return an array (always an array) of the results where as the second will run a query and return the first object that matches or `undefined`. The query we pass in is an object and we can query for any field with this object.
-> **`res.render('todos/show', todo)`** This is how we render the show view for todos. This is the file at `views/todos/show.hbs`.
+> **`router.get('/:id', (req, res) => {})`** `:id` is a _parameter_: a placeholder for a value. We can access the value through the `params` object inside of `req`: `req.params.id` > **`Todo.findOne({ _id: req.params.id })`** There are two methods you'll see used to query the database, `find()` and `findOne()`. The first will run a query and return an array (always an array) of the results where as the second will run a query and return the first object that matches or `undefined`. The query we pass in is an object and we can query for any field with this object.
+> **`res.render('show', todo)`** This is how we render the show view for todos. This is the file at `views/show.hbs`.
 
 The above will attempt to render a `show` view, which we do not yet have. Let's build it out:
 
@@ -374,8 +385,8 @@ This view will render the title as well as a link to edit and a form to delete
 We want to be able to add new to do items to our list. Doing so will require submitting a form that will be processed by our server. We first need to render a view with the form, commonly at `/{resource}/new`:
 
 ```js
-app.get('/new', (req, res) => {
-  res.render('todos/new');
+router.get('/new', (req, res) => {
+  res.render('new');
 });
 ```
 
@@ -389,9 +400,9 @@ Make the following changes to your `index.js` file:
 // add `express.json` middleware which will parse JSON requests into
 // JS objects before they reach the route files.
 // The method `.use` sets up middleware for the Express application
-app.use(express.json())
+app.use(express.json());
 // this parses requests that may use a different content type
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
 ```
 
 Now, we can write up our view:
@@ -401,10 +412,10 @@ Now, we can write up our view:
 ```html
 <h2>New To Do:</h2>
 
-<form action="/" method="post" accept-charset="utf-8">
+<form action="/todos" method="post" accept-charset="utf-8">
   <p>
     <label>Title:</label>
-    <input type="text" value="" name="title" id=""/>
+    <input type="text" value="" name="title" id="" />
   </p>
   <input type="submit" value="Create" />
 </form>
@@ -417,26 +428,25 @@ A common convention is to nest data inside of another sub-object. Doing so just 
 A user is going to fill out this form and then hit submit. We will need a route in our controller to handle that:
 
 ```js
-app.post('/', (req, res) => {
-  Todo.create(req.body)
-    .then(todo => {
-      res.redirect('/');
-    })
+app.post('/todos', (req, res) => {
+  Todo.create(req.body).then(todo => {
+    res.redirect('/todos');
+  });
 });
 ```
 
-> **`app.post('/', (req, res)`** - listen for `post` requests to `/todos`.
+> **`app.post('/todos', (req, res)`** - listen for `post` requests to `/todos`.
 > **`Todo.create(req.body)`** - create a new to do in the database
-> **`res.redirect('/')`** - redirect back to the root route
+> **`res.redirect('/todos')`** - redirect back to the root route
 
 ## Lunch
 
 ## Review (10 min / 0:10)
 
-* What is MVC? What are the 3 parts of MVC and how do they relate to each other?
-* What is CRUD?
-* What is REST? What is RESTful routing? What is a resource?
-* What is a route? What are the HTTP methods (verbs)?
+- What is MVC? What are the 3 parts of MVC and how do they relate to each other?
+- What is CRUD?
+- What is REST? What is RESTful routing? What is a resource?
+- What is a route? What are the HTTP methods (verbs)?
 
 ## Updating a To do (20 min / 0:30)
 
@@ -449,29 +459,29 @@ Inside of `index.js`, we need to include and configure `method-override`:
 ```js
 // index.js
 
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
 
 // ...
 
-app.use(methodOverride('_method'))
+app.use(methodOverride('_method'));
 ```
 
-Now we can create a form inside of `views/todos/edit.hbs`:
+Now we can create a form inside of `views/edit.hbs`:
 
 ```html
 <h2>Edit To Do:</h2>
 
-<form action="/{{this.id}}?_method=put" method="post">
+<form action="todos/{{this.id}}/edit?_method=put" method="post">
   <p>
     <label>Title:</label>
-    <input type="text" value="{{this.title}}" name="title"/>
+    <input type="text" value="{{this.title}}" name="title" />
   </p>
   <p>
     <label>Complete:</label>
     {{#if complete}}
-      <input type="checkbox" name="complete" checked/>
+    <input type="checkbox" name="complete" checked />
     {{else}}
-      <input type="checkbox" name="complete"/>
+    <input type="checkbox" name="complete" />
     {{/if}}
   </p>
   <input type="submit" value="Update" />
@@ -481,18 +491,18 @@ Now we can create a form inside of `views/todos/edit.hbs`:
 When we submit the above form, we'll make a `POST` request, Express will see the `?_method=put` part of the action and redirect this to our `PUT` route, which we need to define:
 
 ```js
-router.get('/edit/:id', (req, res) => {
-  Todo.findOne({_id: req.params.id})
-    .then(todo => {
-      res.render("todos/edit", todo);
-    })
+router.get('todos/:id/edit', (req, res) => {
+  Todo.findOne({ _id: req.params.id }).then(todo => {
+    res.render('edit', todo);
+  });
 });
 
-router.put('/:id', (req, res) => {
-  Todo.findOneAndUpdate({_id: req.params.id}, req.body, { new: true })
-    .then(todo => {
-      res.redirect('/')
-    })
+router.put('todos/:id', (req, res) => {
+  Todo.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true }).then(
+    todo => {
+      res.redirect('/');
+    }
+  );
 });
 ```
 
@@ -503,8 +513,8 @@ The first route above queries the database using `.findOne()` to find a record w
 We're almost there! Last bit of CRUD functionality we need to implement is `DELETE`. Let's start by adding a second form with a delete button to our show view:
 
 ```html
-<form action="/{{this.id}}?_method=delete" method="post">
-  <input type="submit" value="Remove">
+<form action="todos/{{this.id}}?_method=delete" method="post">
+  <input type="submit" value="Remove" />
 </form>
 ```
 
@@ -513,11 +523,10 @@ We're using `method-override` again to tell Express we actually want to perform 
 When a user wants to delete a record, we can use the `.findOneAndRemove()` to find and remove that record in a single operation:
 
 ```js
-app.delete('/:id', (req, res) => {
-  Todo.findOneAndRemove({ _id: req.params.id })
-    .then(() => {
-      res.redirect('/')
-    })
+app.delete('todos/:id', (req, res) => {
+  Todo.findOneAndRemove({ _id: req.params.id }).then(() => {
+    res.redirect('/');
+  });
 });
 ```
 
@@ -529,18 +538,18 @@ And that's it! We now have full CRUD and are following both MVC and REST!
 
 For the remainder of class, lets build an application together that will serve as a guest book. Our guest book application will have one resource: entries. An entry has the following properties:
 
-| Title | Type | Description |
-| --- | --- | --- |
+| Title  | Type   | Description             |
+| ------ | ------ | ----------------------- |
 | author | String | The author of the entry |
-| body | String | The body of the entry |
+| body   | String | The body of the entry   |
 
 We want to perform full CRUD on our entry resource. We also want to follow RESTful routing and MVC.
 
 ## Closing / Questions
 
-* What is MVC? What are the different parts of MVC? How do they relate?
-* What is CRUD?
-* What is REST? What is RESTful Routing? Using a resource, draw out a table of RESTful routes
+- What is MVC? What are the different parts of MVC? How do they relate?
+- What is CRUD?
+- What is REST? What is RESTful Routing? Using a resource, draw out a table of RESTful routes
 
 ## Homework
 
@@ -548,9 +557,9 @@ Your homework assignment is to build [YUM](https://git.generalassemb.ly/ga-wdi-e
 
 ## Resources
 
-* [Using ES6 Promises Instead of Callbacks for Mongoose Queries](http://erikaybar.name/using-es6-promises-with-mongoosejs-queries/)
-* [How to Write Middleware for Express Apps](https://stormpath.com/blog/how-to-write-middleware-for-express-apps)
-* [Method Override](https://github.com/expressjs/method-override)
+- [Using ES6 Promises Instead of Callbacks for Mongoose Queries](http://erikaybar.name/using-es6-promises-with-mongoosejs-queries/)
+- [How to Write Middleware for Express Apps](https://stormpath.com/blog/how-to-write-middleware-for-express-apps)
+- [Method Override](https://github.com/expressjs/method-override)
 
 ## Bonus Material
 
@@ -613,7 +622,7 @@ ampersand `&`.
 
 URLs aren't supposed to have spaces in them, and some characters are reserved. You can't just put a forward-slash `/` in a query string because your browser's going to think that you mean a directory. Any `&` in a query string is going to be interpreted as something separating key-value pairs.
 
-So instead we encode "special characters" in a special way (*not* to be confused
+So instead we encode "special characters" in a special way (_not_ to be confused
 with HTML's way of encoding special characters).
 
 For example, spaces are replaced either with a plus `+`, or they are **percent-encoded** with a special number. Space is `%20`.
