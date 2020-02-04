@@ -90,15 +90,11 @@ Turn to your neighbor(s) and review the following questions:
 
 ## Break (10 min / 0:55)
 
-# Express & MongoDB 
-
-## We Do: [To Do](https://git.generalassemb.ly/ga-wdi-exercises/express-to-do) (5 min / 1:00)
-
-Clone down the [Express To Do](https://git.generalassemb.ly/ga-wdi-exercises/express-to-do) repository. This is the application we'll be building together as we learn Express and Mongoose.
+# Express & MongoDB
 
 ## Setup (10 min / 1:10)
 
-Before we can get started on building the application, we need to get setup. Lets run `npm init -y` and then install `express`. We'll then scaffold out the folder structure for our application:
+Before we can get started on building the application, we need to get setup. Lets create a directory for our project in our `sandbox`, run `npm init -y` and then install `express`. We'll then scaffold out the folder structure for our application:
 
 ```sh
 mkdir db models views controllers
@@ -112,7 +108,7 @@ It's important to note that we are by no means required to follow any particular
 
 ### Why are we using Mongoose?
 
-[Mongoose](http://mongoosejs.com/) is an Object Document Mapper (ODM) - a tool we can use to map between native objects and documents stored inside a document store (like MongoDB). ODMs like Mongoose let us connect to a database and then interact with our database in a consistent and easy way. We could just use the MongoDB JavaScript library, but Mongoose gives us an easier way to interact with our database and work with the objects stored in it. 
+[Mongoose](http://mongoosejs.com/) is an Object Document Mapper (ODM) - a tool we can use to map between native objects and documents stored inside a document store (like MongoDB). ODMs like Mongoose let us connect to a database and then interact with our database in a consistent and easy way. We could just use the MongoDB JavaScript library, but Mongoose gives us an easier way to interact with our database and work with the objects stored in it.
 
 In the next few sections, we'll use Mongoose to connect to our MongoDB database and query that database.
 
@@ -141,14 +137,12 @@ const mongoose = require('mongoose')
 
 mongoose.connect('mongodb://localhost/todo')
 
-mongoose.Promise = Promise
-
 module.exports = mongoose
 ```
 
-> **`const mongoose = require("mongoose")`** - In order to reference Mongoose, we need to require its corresponding node module and save it in a variable we can reference later.  
->  
-> **`mongoose.connect`** - We also need to link Mongoose to our `todo` Mongo database.  
+> **`const mongoose = require("mongoose")`** - In order to reference Mongoose, we need to require its corresponding node module and save it in a variable we can reference later.
+>
+> **`mongoose.connect`** - We also need to link Mongoose to our `todo` Mongo database.
 >
 > **`module.exports = mongoose`** - When this file (`connection.js`) is required in other files, it will evaluate to this *connected* version of `mongoose`.
 
@@ -175,10 +169,10 @@ const Todo = mongoose.model("Todo", ToDoSchema);
 module.exports = Todo;
 ```
 
-> **`mongoose.Schema( )`** - We use Mongoose's schema method to define a blueprint for our Todo model (i.e. what attributes it will have and what data types they will be).  
->  
-> **`mongoose.model( )`** - We attach our schema to our model by passing in two arguments to this method: (1) the desired name of our model ("Todo") and (2) the existing schema.  
->  
+> **`mongoose.Schema( )`** - We use Mongoose's schema method to define a blueprint for our Todo model (i.e. what attributes it will have and what data types they will be).
+>
+> **`mongoose.model( )`** - We attach our schema to our model by passing in two arguments to this method: (1) the desired name of our model ("Todo") and (2) the existing schema.
+>
 > **`module.exports = Todo`** - When this file (`schema.js`) is required in other files, it will evaluate to the `Todo` model defined here through which we will be able to query the `todo` collection in our Mongo database.
 
 ## We Do: Seed the Database (10 min / 1:45)
@@ -213,10 +207,10 @@ Todo.remove({})
   });
 ```
 
-> **`const Todo = require("./schema")`** - Because we defined our model in `schema.js` and set its `module.exports` to be equal to the `Todo` model, we can reference it like so.  
->  
-> **`Todo.remove({})`** - This clears out the entire `todo` collection. We're not passing in any parameters, so Mongoose interprets this command as delete all documents in that collection!  
->  
+> **`const Todo = require("./schema")`** - Because we defined our model in `schema.js` and set its `module.exports` to be equal to the `Todo` model, we can reference it like so.
+>
+> **`Todo.remove({})`** - This clears out the entire `todo` collection. We're not passing in any parameters, so Mongoose interprets this command as delete all documents in that collection!
+>
 > **`Todo.collection.insert(seedData)`** - Create a collection using the JSON contained in our seed file. Note that this is ideal for bulk insertion but **skips** schema validation. In our controller, where we will want validation, we will use `Todo.create()`.
 
 ### Running the Seed File
@@ -250,7 +244,7 @@ Every HTTP request consists of a request **method** and **path**. The **path** i
 
 Your browser always sends that request in a *particular way* that gives the server a hint as to the purpose of the request. This *particular way* is the **method**.
 
-**REST**, or REpresentational State Transfer, is a convention that standardizes how clients make requests to servers.  
+**REST**, or REpresentational State Transfer, is a convention that standardizes how clients make requests to servers.
 
 Knowing REST is important because the vast majority of web developers have agreed to follow this same convention.
 
@@ -290,7 +284,7 @@ A **route** is a **method** plus a **path**...
 
 Each route results in an **action**.
 
-REST can be translated in to RESTful Routes (routes that follow REST): 
+REST can be translated in to RESTful Routes (routes that follow REST):
 
 | Method |      Path     |       Action |
 | ------ | ------------- | ---------------------------------- |
@@ -326,13 +320,13 @@ router.get('/', (req, res) => {
 });
 ```
 
-> **`Todo.find({})`** - Retrieves all todos in the database since we are not passing in any parameters to the method.  
->  
-> **`.then(function(todos){ ... })`** - `todos` represents the all the Todos pulled from the database. We can then reference this inside of `.then`.  
->  
+> **`Todo.find({})`** - Retrieves all todos in the database since we are not passing in any parameters to the method.
+>
+> **`.then(function(todos){ ... })`** - `todos` represents the all the Todos pulled from the database. We can then reference this inside of `.then`.
+>
 > **`res.render('index', { todos });`** - A little confusing, we're rendering our `index` view and passing in our `todos` from the database
 
-The above controller action fetches all Todos from the database and renders them to an `index` view. We don't have an index view yet! 
+The above controller action fetches all Todos from the database and renders them to an `index` view. We don't have an index view yet!
 
 ```html
 <!-- views/index.hbs -->
@@ -385,27 +379,22 @@ app.get('/new', (req, res) => {
 });
 ```
 
-### Forms & `body-parser`
+### Forms
 
-In Express, in order to process user input received through a form we will need to install and implement the `body-parser` middleware.  
+In Express, in order to process user input received through a form we will need to some middleware.
 
-Install it via the command line -- `npm install --save body-parser` -- then make the following changes to your `index.js` file:
+Make the following changes to your `index.js` file:
 
 ```js
-// index.js
-
-const parser = require('body-parser')
-
-// ...
-
-app.use(parser.urlencoded({ extended: true }))
+// add `express.json` middleware which will parse JSON requests into
+// JS objects before they reach the route files.
+// The method `.use` sets up middleware for the Express application
+app.use(express.json())
+// this parses requests that may use a different content type
+app.use(express.urlencoded({ extended: true }))
 ```
 
-> **`const parser = require("body-parser")`** - Require `body-parser` so we can reference it later.  
->  
-> **`app.use(parser.urlencoded({extended: true}))`** - configure the parser to support html forms (access to the body of the request)
-
-`body-parser` will parse the body of an incoming request, making it available to us as part of the `request` object. The body is the payload of the request: the data for a new item, for instance. Now that `body-parser` is set up, we can write up our view:
+Now, we can write up our view:
 
 ### View
 
@@ -453,7 +442,7 @@ app.post('/', (req, res) => {
 
 Updating a to do has two steps: first, we need to get the to do that the user wants to update and render a form to update that to do, typically called the `edit` view; second, when the user submits that form, we update that to do in the database. For updating data in REST, we use `PUT` and `PATCH`, here we'll use `PUT`. There's just one small problem: `PUT`, `PATCH`, and `DELETE` are all part of REST and HTTP - they are **not** part of HTML. That means, we can't make the `method` attribute of a form equal and of those three methods.
 
-To get around this, the team behind Express built the [method-override](https://github.com/expressjs/method-override) package, which we can download with NPM. Method-override overrides the form method, so we can set the method equal to `POST` and add a query parameter to the action to tell Express what HTTP verb we actually want to use. 
+To get around this, the team behind Express built the [method-override](https://github.com/expressjs/method-override) package, which we can download with NPM. Method-override overrides the form method, so we can set the method equal to `POST` and add a query parameter to the action to tell Express what HTTP verb we actually want to use.
 
 Inside of `index.js`, we need to include and configure `method-override`:
 
@@ -640,4 +629,3 @@ You'll notice that these three links go to the same place...
 In fact, in the last one, my browser replaced the space with `%20` itself!
 
 [You can checkout this site to URL-encode and URL-decode stuff](http://meyerweb.com/eric/tools/dencoder/)
-
