@@ -133,11 +133,10 @@ A schema is a description of how an object should be structure (a _schematic_ fo
 ### Set up Connection to MongoDB
 
 1. Install Mongoose via the command line: `npm install --save mongoose`.
-2. create a `db/` directory with a `connection.js` file in it
-3. In `connection.js`, require `'mongoose'` and save it to a `mongoose` variable.
-4. Connect to our `todo` database using `mongoose.connect()`.
-5. Set Mongoose's default Promise library to JavaScript's native `Promise`.
-6. Export this connected version of `mongoose` via `module.exports`.
+1. create a `db/` directory with a `connection.js` file in it
+1. In `connection.js`, require `'mongoose'` and save it to a `mongoose` variable.
+1. Connect to our `todo` database using `mongoose.connect()`.
+1. Export this connected version of `mongoose` via `module.exports`.
 
 ```js
 // db/connection.js
@@ -157,7 +156,7 @@ module.exports = mongoose;
 
 ### Defining a Mongoose Schema and Model
 
-1. Create a new file in `db` directory called `schema.js`.
+1. Create a new file in `models` directory called `schema.js`.
 2. At the top of `schema.js`, require the `connection.js` file and save it to a `mongoose` variable.
 3. Define a `TodoSchema` using mongoose's `.Schema()` method.
 4. Define a `'Todo'` model built off `TodoSchema` with `mongoose.model()` and save it to a `Todo` variable.
@@ -166,7 +165,7 @@ module.exports = mongoose;
 ```js
 // db/schema.js
 
-const mongoose = require('./connection');
+const mongoose = require('..db/connection');
 
 const ToDoSchema = new mongoose.Schema({
   title: String,
@@ -550,10 +549,6 @@ We want to perform full CRUD on our entry resource. We also want to follow RESTf
 - What is MVC? What are the different parts of MVC? How do they relate?
 - What is CRUD?
 - What is REST? What is RESTful Routing? Using a resource, draw out a table of RESTful routes
-
-## Homework
-
-Your homework assignment is to build [YUM](https://git.generalassemb.ly/ga-wdi-exercises/yum#part-ii-add-express).
 
 ## Resources
 
