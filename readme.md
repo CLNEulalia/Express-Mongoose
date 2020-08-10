@@ -427,10 +427,13 @@ A common convention is to nest data inside of another sub-object. Doing so just 
 A user is going to fill out this form and then hit submit. We will need a route in our controller to handle that:
 
 ```js
-app.post('/todos', (req, res) => {
-  Todo.create(req.body).then(todo => {
-    res.redirect('/todos');
-  });
+// Create: POST a new todo to the database
+router.post('/', (req, res) => {
+  Todo.create(req.body)
+    .then((todo) => {
+      res.redirect('/todos');
+    })
+    .catch(console.error);
 });
 ```
 
