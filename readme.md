@@ -125,7 +125,7 @@ module.exports = mongoose;
 ```js
 // models/todo-model.js
 
-const mongoose = require('..db/connection');
+const mongoose = require('../db/connection');
 
 const ToDoSchema = new mongoose.Schema({
   title: {
@@ -158,6 +158,11 @@ module.exports = Todo;
 With our database connection established, let's seed some data into our database using Mongoose.
 
 Seeds allow us to quickly create dummy data. Why would we do that? In order to test out the interfaces and functionalities we build out, we need some content/data to manipulate in order to see how it looks and feels in our application.
+
+### Set Up Seed Data
+
+1. Create a new `todo-seeds.json` file in `db`. 
+1. Add the data from the json [file in this repo](https://git.generalassemb.ly/seir-622/express-mongoose/blob/master/seeds.json). 
 
 ### Set Up Seed File
 
@@ -248,17 +253,18 @@ We'll refer back to these routes at each step as we build out our controllers. F
 
 ## Build A Server
 
-First order of business: Build a server! Our server needs a few basic components to make it ready to listen for requests:
+First order of business: Build a server in `index.js`! Our server needs a few basic components to make it ready to listen for requests:
 
 ```js
+// index.js
 // Require express
 const express = require('express');
-// Use express to instatiate our app
+// Use express to instantiate our app
 const app = express();
 
 /* START ROUTE CONTROLLERS */
 // Require our ToDo model
-const Todo = require('../models/todo-model.js');
+const Todo = require('./models/todo-model.js');
 
 /* END ROUTE CONTROLLERS */
 
@@ -321,6 +327,8 @@ The above controller action fetches all Todos from the database and renders them
 </html>
 ```
 
+Now create a `todos` folder inside of the `views` directory. Inside the `todos` folder, create a file called `index.hbs`. This is where we'll create the template for our homepage view with all of our todo items.
+
 We'll use the [each helper](https://handlebarsjs.com/guide/builtin-helpers.html#each) in Handlebars to iterate over the array of todos in the object we've passed to the render method and output a list item for each todo object it contains. To make it look nice we'll use the Bootstrap `list-group` and `list-group-item` classes!
 
 ```hbs
@@ -336,6 +344,18 @@ We'll use the [each helper](https://handlebarsjs.com/guide/builtin-helpers.html#
   </li>
   {{/each}}
 </ul>
+```
+
+At this point our page will almost be ready to render our components. However, we need to set Handlebars as our view engine by adding one more line to our `index.js` below the instantiation of our Express app:
+
+```js
+// index.js
+// Require express
+const express = require('express');
+// Use express to instantiate our app
+const app = express();
+// Set Handlebars (hbs) as the view engine of our app
+app.set('view engine', 'hbs');
 ```
 
 Now, if we reload the page, we should see a list containing three todos. We'll be coming back to these shortly.
@@ -360,11 +380,12 @@ app.get('/todos/:id', (req, res) => {
 >
 > **`Todo.findById(req.params.id)`** There are several methods you'll see used to query the database, `find()`, `findById()` and `findOne()` are all very common. The `.findById()` method expects us to pass it an id as an argument instead of a query object such as: `.find({ _id: req.params.id })`.
 >
-> **`res.render('show', todo)`** This is how we render the show view for todos. This is the file at `views/show.hbs`.
+> **`res.render('show', todo)`** This is how we render the show view for todos. This is the file that we must create at `views/show.hbs`.
 
 The above will attempt to render a `show` view, which we do not yet have. Here we'll make use of the [if helper](https://handlebarsjs.com/guide/builtin-helpers.html#if) in Handlebars to display the complete or incomplete status. Lastly, we'll add a link that will take us back to the index route and style it to look like a button using Bootstrap classes.
 
 ```hbs
+<!-- views/todos/show.hbs -->
 <h1>{{title}}</h1>
 {{#if complete}}
 <p>Status: complete</p>
@@ -393,7 +414,7 @@ const router = express.Router();
 Next, go into your `index.js` and select all of the code inside the controller START and END comment tags and cut them with <kbd>⌘</kbd> + <kbd>X</kbd> (command + X or ctrl + X on Windows) and then paste them into your `controllers/todos.js` file below the router variable with <kbd>⌘</kbd> + <kbd>V</kbd>:
 
 ```js
-// Require our Todo model
+// Require our Todo model (note the change in file path now that we are in the controllers folder)
 const Todo = require('../models/todo-model.js');
 
 app.get('/todos', (req, res) => {
@@ -464,6 +485,8 @@ router.get('/new', (req, res) => {
   res.render('new');
 });
 ```
+
+> Be sure to place this route BEFORE the get by id route, otherwise the controller file will try to find a todo with an id of "new" and not be able to load the new template.
 
 ### Forms
 
@@ -627,7 +650,7 @@ It'd also be nice if we could visually see if a todo is complete in the index li
 
 ## Delete a To Do
 
-We're almost there! Last bit of CRUD functionality we need to implement is `DELETE`. Let's start by adding a second form with a delete button to our show view:
+We're almost there! Last bit of CRUD functionality we need to implement is `DELETE`. Let's start by adding a second form with a delete button to our index view:
 
 ```html
 <!--insert this anchor tag into the div with a class of 'links'-->
