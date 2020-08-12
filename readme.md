@@ -572,9 +572,10 @@ const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
 ```
 
-Now we can create a form inside of `views/edit.hbs`:
+Now we can create a form inside of `views/todos/edit.hbs`:
 
 ```hbs
+<!--views/todos/edit.hbs-->
 <h2>Edit To Do:</h2>
 
 <form action="/todos/{{this.id}}/?_method=put" method="POST">
