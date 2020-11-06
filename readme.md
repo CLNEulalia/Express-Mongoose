@@ -159,6 +159,7 @@ const ToDoSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  { timestamps: true }
 });
 
 // Make sure to name the model with the singular Todo!
@@ -185,7 +186,7 @@ Seeds allow us to quickly create dummy data. Why would we do that? In order to t
 ### Set Up Seed Data
 
 1. Create a new `todo-seeds.json` file in `db`. 
-1. Add the data from the json [file in this repo](https://git.generalassemb.ly/seir-622/express-mongoose/blob/master/seeds.json). 
+1. Add the data from the json [file in this repo](https://git.generalassemb.ly/sei-921/express-mongoose/blob/master/seeds.json). 
 
 ### Set Up Seed File
 
@@ -199,12 +200,20 @@ const Todo = require('../models/todo-model');
 const seedData = require('./todo-seeds.json');
 
 // Remove any preexisting data
-Todo.remove({})
+Todo.deleteMany({})
   .then(() => {
-    // Insert the dummy data
-    return Todo.collection.insert(seedData);
+    // Insert the dummy data and return it
+    // so we can log it in the next .then
+    return Todo.collection.insertMany(seedData);
   })
-  .then(() => {
+  // If the insert was successful, we'll see the
+  // results in the terminal
+  .then(console.log)
+  // Log the error if the insert didn't work
+  .catch(console.error)
+  // Whether it was successful or not, we need to 
+  // exit the database.
+  .finally(() => {
     // Close the connection to Mongo
     process.exit();
   });
@@ -220,10 +229,9 @@ Todo.remove({})
 
 1. Make sure you're in the `express-mvc` directory.
 1. Run `node ./db/todo-seeds.js` in the Terminal.
-1. Then run `mongo` in the Terminal and enter the following commands via the Mongo CLI:
+1. We'll see the results in the terminal, but we can also run `mongo express-mvc` in the Terminal and then use `find` to see the data in the collection via the MongoDB REPL:
 
 ```
-> use express-mvc
 > db.todos.find()
 ```
 
