@@ -7,4 +7,4 @@
 
 ## FullStack Monolith Application Architecture
 
-![Monolith Architecture](https://media.git.generalassemb.ly/user/17300/files/02eb9280-201f-11eb-8de7-2c7f9d7927ac)
+![Monolith Architecture](https://media.git.generalassemb.ly/user/17300/files/1ea36880-2020-11eb-89fe-d3326a9c2011)
