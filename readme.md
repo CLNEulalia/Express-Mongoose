@@ -513,7 +513,7 @@ We want to be able to add new to do items to our list. Doing so will require sub
 
 ```js
 router.get('/new', (req, res) => {
-  res.render('new');
+  res.render('todos/new');
 });
 ```
 
