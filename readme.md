@@ -150,17 +150,20 @@ module.exports = mongoose;
 
 const mongoose = require('../db/connection');
 
-const ToDoSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-  },
-  complete: {
-    type: Boolean,
-    default: false,
+const ToDoSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    complete: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
-});
+);
+
 
 // Make sure to name the model with the singular Todo!
 // Mongoose pluralizes and lowercases the name of the model
@@ -204,7 +207,7 @@ Todo.deleteMany({})
   .then(() => {
     // Insert the dummy data and return it
     // so we can log it in the next .then
-    return Todo.collection.insertMany(seedData);
+    return Todo.insertMany(seedData);
   })
   // If the insert was successful, we'll see the
   // results in the terminal
