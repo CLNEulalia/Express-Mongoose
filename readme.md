@@ -189,7 +189,7 @@ Seeds allow us to quickly create dummy data. Why would we do that? In order to t
 ### Set Up Seed Data
 
 1. Create a new `todo-seeds.json` file in `db`. 
-1. Add the data from the json [file in this repo](https://git.generalassemb.ly/sei-921/express-mongoose/blob/master/seeds.json). 
+1. Add the data from the json [file in this repo](https://git.generalassemb.ly/seir-1130/express-mongoose/blob/master/seeds.json). 
 
 ### Set Up Seed File
 
